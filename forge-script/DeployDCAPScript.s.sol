@@ -3,10 +3,19 @@ pragma solidity ^0.8.0;
 
 import "forge-std/Script.sol";
 import "../contracts/AutomataDcapV3Attestation.sol";
+import "../contracts/utils/P256Verifier.sol";
 import "../contracts/utils/SigVerifyLib.sol";
 import "../contracts/lib/PEMCertChainLib.sol";
 
 contract DeployDCAPScript is Script {
+    function deployP256Verifier() public {
+        uint256 deployerKey = vm.envUint("PRIVATE_KEY");
+        vm.broadcast(deployerKey);
+
+        P256Verifier p256Verifier = new P256Verifier{salt: 0}();
+
+        console.log("[LOG] P256Verifier deployed to %s", address(p256Verifier));
+    }
     function deploySigVerifyLib() public {
         uint256 deployerKey = vm.envUint("PRIVATE_KEY");
         vm.broadcast(deployerKey);
@@ -22,7 +31,10 @@ contract DeployDCAPScript is Script {
 
         PEMCertChainLib pemCertLib = new PEMCertChainLib();
 
-        console.log("[LOG] PEMCertChainLib deployed to %s", address(pemCertLib));
+        console.log(
+            "[LOG] PEMCertChainLib deployed to %s",
+            address(pemCertLib)
+        );
     }
 
     function deployAttestation() public {
@@ -31,9 +43,14 @@ contract DeployDCAPScript is Script {
         address pemCertLib = vm.envAddress("PEMCERT_LIB_ADDRESS");
         vm.broadcast(deployerKey);
 
-        AutomataDcapV3Attestation attestation =
-            new AutomataDcapV3Attestation(address(sigVerifyLib), address(pemCertLib));
+        AutomataDcapV3Attestation attestation = new AutomataDcapV3Attestation(
+            address(sigVerifyLib),
+            address(pemCertLib)
+        );
 
-        console.log("[LOG] AutomataDcapV3Attestation deployed to %s", address(attestation));
+        console.log(
+            "[LOG] AutomataDcapV3Attestation deployed to %s",
+            address(attestation)
+        );
     }
 }

@@ -1,4 +1,4 @@
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-foundry";
@@ -13,24 +13,26 @@ const config: HardhatUserConfig = {
     settings: {
       optimizer: {
         enabled: true,
-        runs: Math.pow(2, 32) - 1
+        runs: Math.pow(2, 32) - 1,
       },
-      viaIR: true
-    }
+      viaIR: true,
+    },
   },
   networks: {
     hardhat: {
       forking: {
         // provide a network url where the P256Verifier library exists
         // ref: https://github.com/daimo-eth/p256-verifier
-        url: SEPOLIA_URL!
+        url: SEPOLIA_URL!,
       },
-      accounts: [{
-        privateKey: PRIVATE_KEY!,
-        balance: "10000000000000000000000" // 10000 ETH
-      }]
-    }
-  }
+      accounts: [
+        {
+          privateKey: PRIVATE_KEY!,
+          balance: "10000000000000000000000", // 10000 ETH
+        },
+      ],
+    },
+  },
 };
 
 export default config;

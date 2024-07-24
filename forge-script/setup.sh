@@ -8,7 +8,7 @@ FORGE_COMMAND_SUFFIX="--broadcast --rpc-url $RPC_URL"
 
 # STARTING_LINE=6
 # Start Anvil in the background with the specified RPC URL
-anvil --fork-url $SEPOLIA_URL &
+anvil &
 
 # Get the PID of the Anvil process
 ANVIL_PID=$!
@@ -28,6 +28,12 @@ fi
 # Ensure the .deployed-contract-addresses file exists and truncate it to make sure it is empty
 touch .deployed-contract-addresses
 : > .deployed-contract-addresses
+
+echo "[LOG] Deploying P256Verifier contract..."
+P256_VERIFIER_OUTPUT=$(forge script $DEPLOY_SCRIPT --sig "deployP256Verifier()" $FORGE_COMMAND_SUFFIX | grep LOG)
+export P256_VERIFIER_ADDRESS=$(echo $P256_VERIFIER_OUTPUT | grep -oE '0x[0-9A-Fa-f]+')
+echo "P256_VERIFIER_ADDRESS=$P256_VERIFIER_ADDRESS" >> .deployed-contract-addresses
+echo $P256_VERIFIER_OUTPUT
 
 echo "[LOG] Deploying SigVerifyLib..."
 SIGVERIFY_LIB_OUTPUT=$(forge script $DEPLOY_SCRIPT --sig "deploySigVerifyLib()" $FORGE_COMMAND_SUFFIX | grep LOG)
