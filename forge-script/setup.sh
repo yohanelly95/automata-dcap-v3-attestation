@@ -84,7 +84,6 @@ SAMPLE_QUOTE=$1
 
 # Run the cast command
 OUTPUT=$(cast call $DCAP_ATTESTATION_ADDRESS "verifyAttestation(bytes)" $SAMPLE_QUOTE --rpc-url $RPC_URL | grep -oE '0x[0-9A-Fa-f]+')
-echo $OUTPUT
 echo "OUTPUT=$OUTPUT" >> .deployed-contract-addresses
 
 
