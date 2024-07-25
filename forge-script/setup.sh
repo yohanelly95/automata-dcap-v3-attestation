@@ -15,7 +15,7 @@ ANVIL_PID=$!
 
 # Wait for Anvil to start
 echo "Waiting for Anvil to start..."
-sleep 5  # Adjust this if necessary
+sleep 1  # Adjust this if necessary
 
 if ps -p $ANVIL_PID > /dev/null
 then

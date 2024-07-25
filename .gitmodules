@@ -7,3 +7,6 @@
 [submodule "lib/solady"]
 	path = lib/solady
 	url = https://github.com/vectorized/solady
+[submodule "lib/p256-verifier-fork"]
+	path = lib/p256-verifier-fork
+	url = https://github.com/yohanelly95/p256-verifier.git
