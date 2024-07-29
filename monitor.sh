@@ -11,9 +11,12 @@ function install_foundry_and_run_anvil {
         curl -L https://foundry.paradigm.xyz | bash
         source ~/.bashrc
         foundryup --commit $FORGE_COMMIT_HASH
+        echo "[LOG] Running forge install..."
         forge install
     else
         echo "[LOG] Foundry is already installed."
+        echo "[LOG] Running forge install..."
+        forge install
     fi
 
     echo "[LOG] Starting anvil..."
