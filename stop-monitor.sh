@@ -9,6 +9,7 @@ if [ -n "$PIDS" ]; then
   for PID in $PIDS; do
     echo "Killing PID $PID"
     kill $PID
+    pkill -f monitor.sh
     # If the process does not stop, force kill it
     sleep 2
     if ps -p $PID > /dev/null; then
