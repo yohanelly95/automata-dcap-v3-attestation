@@ -5,19 +5,14 @@ SETUP_SCRIPT="./forge-script/setup.sh"
 FORGE_COMMIT_HASH="62cdea8"
 # Function to install Foundry if not already installed and run anvil
 function install_foundry_and_run_anvil {
-    if ! command -v anvil &> /dev/null
-    then
-        echo "[LOG] Installing Foundry..."
-        curl -L https://foundry.paradigm.xyz | bash
-        source ~/.bashrc
-        foundryup --commit $FORGE_COMMIT_HASH
-        echo "[LOG] Running forge install..."
-        forge install
-    else
-        echo "[LOG] Foundry is already installed."
-        echo "[LOG] Running forge install..."
-        forge install
-    fi
+    # Always install the specific version of Foundry
+    echo "[LOG] Installing Foundry version with commit $FORGE_COMMIT_HASH..."
+    curl -L https://foundry.paradigm.xyz | bash
+    source ~/.bashrc
+    foundryup --commit $FORGE_COMMIT_HASH
+
+    echo "[LOG] Running forge install..."
+    forge install
 
     echo "[LOG] Starting anvil..."
     anvil &
@@ -35,6 +30,7 @@ function install_foundry_and_run_anvil {
         exit 1
     fi
 }
+
 
 # Function to check if anvil is running
 function is_anvil_running {
