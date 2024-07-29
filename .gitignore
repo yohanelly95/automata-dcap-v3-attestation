@@ -6,4 +6,4 @@ typechain-types/
 out/
 **/.env
 broadcast/
-.deployed-contract-addresses
+.output.txt
