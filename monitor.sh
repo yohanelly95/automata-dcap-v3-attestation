@@ -5,17 +5,6 @@ SETUP_SCRIPT="./forge-script/setup.sh"
 FORGE_COMMIT_HASH="62cdea8"
 # Function to install Foundry if not already installed and run anvil
 function install_foundry_and_run_anvil {
-    # Always install the specific version of Foundry
-    # echo "[LOG] Ensuring Rust is up to date..."
-    # # Ensure Rust is up to date
-    # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    # source $HOME/.cargo/env
-    # rustup update stable
-    # rustup default stable
-    # echo "[LOG] Installing Foundry version with commit $FORGE_COMMIT_HASH..."
-    # curl -L https://foundry.paradigm.xyz | bash
-    # source ~/.bashrc
-    # foundryup --commit $FORGE_COMMIT_HASH
 
     echo "[LOG] Running forge install..."
     forge install
