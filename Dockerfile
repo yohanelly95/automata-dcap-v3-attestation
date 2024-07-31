@@ -26,8 +26,5 @@ RUN chmod +x monitor.sh forge-script/setup.sh verify_attestation.sh
 # Create .env from .env.example
 RUN cp .env.example .env
 
-# Run forge build before running monitor.sh
-RUN forge build
-
 # Set the entrypoint to the monitor script
 ENTRYPOINT ["./monitor.sh"]
